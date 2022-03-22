@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.Library", "KillTeam.Library\KillTeam.Library.csproj", "{B63DCA32-2785-4FE0-8890-78F444C87C99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.WebApp", "KillTeam.Webapp\KillTeam.WebApp.csproj", "{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B63DCA32-2785-4FE0-8890-78F444C87C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B63DCA32-2785-4FE0-8890-78F444C87C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B63DCA32-2785-4FE0-8890-78F444C87C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B63DCA32-2785-4FE0-8890-78F444C87C99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {872799D9-577C-4C65-8491-E247CBA53BB5}
+	EndGlobalSection
+EndGlobal
