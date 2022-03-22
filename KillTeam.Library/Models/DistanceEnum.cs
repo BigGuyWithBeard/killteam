@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace KillTeam.Library.Models
 {
-    public class OperativeModel: ModelBase
+    public enum DistanceEnum
     {
+        BlackTriangle = 1,
+        WhiteCircle = 2,
+        BlueSquare = 3,
+        RedPentagon = 6
     }
 }
