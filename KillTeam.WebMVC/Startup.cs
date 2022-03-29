@@ -41,6 +41,22 @@ namespace KillTeam.WebMVC
                                                              }
                                                             )
                     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //define the location of the various identity paths
+            services.ConfigureApplicationCookie(options =>
+                                                {
+                                                    // Cookie settings
+                                                    options.Cookie.HttpOnly = true;
+                                                    //options.Cookie.Expiration 
+ 
+                                                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                                                    options.LoginPath = "/Identity/Account/Login";
+                                                    options.LogoutPath = "/Identity/Account/Logout";
+                                                    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                                                    options.SlidingExpiration = true;
+                                                    //options.ReturnUrlParameter=""
+                                                });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +75,7 @@ namespace KillTeam.WebMVC
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -71,5 +88,6 @@ namespace KillTeam.WebMVC
             });
 
         }
+
     }
 }

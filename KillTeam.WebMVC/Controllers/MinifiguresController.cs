@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KillTeam.WebMVC.Data;
 using KillTeam.WebMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KillTeam.WebMVC.Controllers
 {
+    [Authorize]
     public class MinifiguresController : Controller
     {
         private readonly ApplicationDbContext _context;
