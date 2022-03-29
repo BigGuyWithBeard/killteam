@@ -12,9 +12,9 @@ namespace KillTeam.WebMVC.Controllers
 {
     public class MinifiguresController : Controller
     {
-        private readonly KillTeamWebMVCContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public MinifiguresController(KillTeamWebMVCContext context)
+        public MinifiguresController(ApplicationDbContext context)
         {
             _context = context;
         }

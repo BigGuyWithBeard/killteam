@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KillTeam.WebMVC.Migrations
 {
-    [DbContext(typeof(KillTeamWebMVCContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220329113246_FirstMigration")]
     partial class FirstMigration
     {

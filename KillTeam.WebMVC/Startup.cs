@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using KillTeam.WebMVC.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace KillTeam.WebMVC
 {
@@ -29,10 +30,17 @@ namespace KillTeam.WebMVC
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<KillTeamWebMVCContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("KillTeamWebMVCContext")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
+            
+ 
+            services.AddIdentity<IdentityUser, IdentityRole>(
+                                                             options => {
+                                                                 options.SignIn.RequireConfirmedAccount = false;
+                                                             }
+                                                            )
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +60,7 @@ namespace KillTeam.WebMVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -61,14 +69,6 @@ namespace KillTeam.WebMVC
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-
-            
-            //// ensure our database is migrated to the local db
-            //using (var scope = 
-            //    app.ApplicationServices.CreateScope())
-            //    using (var context = scope.ServiceProvider.GetService<KillTeamWebMVCContext>())
-            //        context.Database.Migrate();
 
         }
     }
