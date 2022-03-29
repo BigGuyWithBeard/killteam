@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -9,9 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using KillTeam.WebApp.Data;
 
-namespace KillTeam
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using KillTeam.WebMVC.Data;
+
+namespace KillTeam.WebMVC
 {
     public class Startup
     {
@@ -25,10 +27,10 @@ namespace KillTeam
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllersWithViews();
 
-            services.AddDbContext<KillTeamWebAppContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("KillTeamWebAppContext")));
+            services.AddDbContext<KillTeamWebMVCContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("KillTeamWebMVCContext")));
 
 
         }
@@ -42,13 +44,11 @@ namespace KillTeam
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
-            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -57,8 +57,19 @@ namespace KillTeam
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            
+            //// ensure our database is migrated to the local db
+            //using (var scope = 
+            //    app.ApplicationServices.CreateScope())
+            //    using (var context = scope.ServiceProvider.GetService<KillTeamWebMVCContext>())
+            //        context.Database.Migrate();
+
         }
     }
 }

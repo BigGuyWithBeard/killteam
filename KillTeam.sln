@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.Library", "KillTea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.WebApp", "KillTeam.Webapp\KillTeam.WebApp.csproj", "{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillTeam.WebMVC", "KillTeam.WebMVC\KillTeam.WebMVC.csproj", "{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

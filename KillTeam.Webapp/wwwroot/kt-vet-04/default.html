@@ -1,8 +1,21 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>XXXXXXXXXX - Veteran Guardsman | Kill Team</title>
+
+
+
+
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gunner - Veteran Guardsman | Kill Team</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+
     <style>
         h1 {
             font-family: sans-serif;
@@ -19,19 +32,69 @@
             font-size: 6em;
         }
     </style>
+
+
 </head>
 <body>
-<img src="../images/kt-logo-veterans.png" alt="Kill Team - Veteran Guardsman" />
 
-<div class="row">
-    <div class="col">
-        <h1>????? Veteran</h1>
-        <div class="figure">figure kt-vet-??</div>
-    </div>
-    <div class="col">
-        <img src="../images/kt-vet-?????.png" alt="Veteran ?????" />
-    </div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">KillTeam</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<div class="container">
+    <main role="main" class="pb-3">
+
+        
+        
+        
+        
+
+        <img src="../images/kt-logo-veterans.png" alt="Kill Team - Veteran Guardsman" />
+
+        <div class="row">
+            <div class="col">
+                <h1>Gunner [flamer] Veteran</h1>
+                <div class="figure">figure kt-vet-??</div>
+            </div>
+            <div class="col">
+                <img src="../images/kt-vet-gunner.png" alt="Gunner Veteran" />
+            </div>
+        </div>
+
+
+
+    </main>
 </div>
 
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2022 - KillTeam - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    </div>
+</footer>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<!--@await RenderSectionAsync("Scripts", required: false)-->
+    
 </body>
 </html>
