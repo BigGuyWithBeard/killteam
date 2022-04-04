@@ -71,6 +71,9 @@ namespace KillTeam.WebRazor
 
             app.UseEndpoints(endpoints =>
             {
+       
+
+
                 endpoints.MapRazorPages();
             });
 
