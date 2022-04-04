@@ -13,10 +13,10 @@ namespace KillTeam.WebRazor.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<KillTeamUser> _userManager;
         private readonly IEmailSender _sender;
 
-        public RegisterConfirmationModel(UserManager<ApplicationUser> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<KillTeamUser> userManager, IEmailSender sender)
         {
             _userManager = userManager;
             _sender = sender;

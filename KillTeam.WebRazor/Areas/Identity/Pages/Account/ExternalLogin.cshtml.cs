@@ -20,14 +20,14 @@ namespace KillTeam.WebRazor.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<KillTeamUser> _signInManager;
+        private readonly UserManager<KillTeamUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
-            SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager,
+            SignInManager<KillTeamUser> signInManager,
+            UserManager<KillTeamUser> userManager,
             ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender)
         {
@@ -122,7 +122,7 @@ namespace KillTeam.WebRazor.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new KillTeamUser { UserName = Input.Email, Email = Input.Email }; //TODO change to a factory method?
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)

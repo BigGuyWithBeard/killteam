@@ -16,9 +16,9 @@ namespace KillTeam.WebRazor.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<KillTeamUser> _userManager;
 
-        public ResetPasswordModel(UserManager<ApplicationUser> userManager)
+        public ResetPasswordModel(UserManager<KillTeamUser> userManager)
         {
             _userManager = userManager;
         }

@@ -12,7 +12,7 @@ using TheCoderForge.Identity;
 
 namespace TheCoderForge.Identity
 {
-    public static class DataSeeder
+    public static class DataSeeder<TDbContext, TUser> where TDbContext : ApplicationDbContext<TUser> where TUser : ApplicationUser
     {
 
         /// <summary>Seeds the database with required data</summary>
@@ -24,41 +24,37 @@ namespace TheCoderForge.Identity
         public static void Initialise(IServiceProvider serviceProvider)
         {
 
-                var context = serviceProvider.GetService<ApplicationDbContext>();
+            var context = serviceProvider.GetService<TDbContext>();
 
-                if (context == null)
-                {
-                    Debugger.Break();
-                    throw new Exception("Database Context is null");
-                }
+            if (context == null)
+            {
+                Debugger.Break();
+                throw new Exception("Database Context is null");
+            }
 
-                string[] roleArray = Enum.GetNames(typeof(UserRolesEnum));
-                CreateRoles(context, roleArray);
-
-                var user = new ApplicationUser
-                {
-                    Id=Guid.NewGuid().ToString(),
-                    Email = "smith.johnpaul@gmail.com",
-                    NormalizedEmail = "SMITH.JOHNPAUL@GMAIL.COM",
-                    UserName = "smith.johnpaul@gmail.com",
-                    NormalizedUserName = "SMITH.JOHNPAUL@GMAIL.COM",
-                    PhoneNumber = "",//"+111111111111",
-                    EmailConfirmed = true,
-                    PhoneNumberConfirmed = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
+            string[] roleArray = Enum.GetNames(typeof(UserRolesEnum));
+            CreateRoles(context, roleArray);
 
 
-                CreateUser(serviceProvider, context, user, roleArray ,"P@ssw0rd");
+            var user = (TUser)Activator.CreateInstance(typeof(TUser), new object[]
+                                                                      {
 
-                context.SaveChanges();
+                                                                      });
+            //TODO find a way to use a constructor to set these properties.
 
+            user.Id = Guid.NewGuid().ToString();
+            user.Email = "smith.johnpaul@gmail.com";
+            user.NormalizedEmail = user.Email.ToUpper();
+            user.UserName = "smith.johnpaul@gmail.com";
+            user.NormalizedUserName = user.UserName.ToUpper();
+            user.PhoneNumber = "";
+            user.EmailConfirmed = true;
+            user.PhoneNumberConfirmed = false;
+            user.SecurityStamp = Guid.NewGuid().ToString("D");
 
-                // some paranoia code to check the password is correct:
-                // var  userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
-             // var result=  userManager.CheckPasswordAsync( user, "P@ssw0rd");
+            CreateUser(serviceProvider, context, user, roleArray, "P@ssw0rd");
 
-      
+            context.SaveChanges();
 
         }
 
@@ -68,7 +64,7 @@ namespace TheCoderForge.Identity
         /// </summary>
         /// <param name="databaseContext">The database context.</param>
         /// <param name="roleNames">The role names.</param>
-        private static void CreateRoles(ApplicationDbContext databaseContext,  string[] roleNames)
+        private static void CreateRoles(TDbContext databaseContext, string[] roleNames)
         {
             foreach (string roleName in roleNames)
             {
@@ -90,20 +86,20 @@ namespace TheCoderForge.Identity
         private static Boolean ValidatePassword(IServiceProvider serviceProvider, string password)
         {
 
-            var  userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+            var userManager = serviceProvider.GetService<UserManager<TUser>>();
 
             List<string> passwordErrors = new List<string>();
 
-   
-            foreach(var validator in userManager.PasswordValidators)
+
+            foreach (var validator in userManager.PasswordValidators)
             {
-                var result =  validator.ValidateAsync(userManager, null, password).Result ;
+                var result = validator.ValidateAsync(userManager, null, password).Result;
 
                 if (!result.Succeeded)
                 {
                     foreach (var error in result.Errors)
                     {
-                        passwordErrors.Add(error.Description);   
+                        passwordErrors.Add(error.Description);
                     }
                 }
             }
@@ -116,9 +112,9 @@ namespace TheCoderForge.Identity
         /// <param name="user">The user.</param>
         /// <param name="roles">The roles.</param>
         /// <remarks>Must be called after the IdentityRoles have been created.</remarks>
-        private static void CreateUser(IServiceProvider serviceProvider, ApplicationDbContext context, ApplicationUser user, string[] roles, string password)
+        private static void CreateUser(IServiceProvider serviceProvider, TDbContext context, TUser user, string[] roles, string password)
         {
-            
+
             var passwordValid = ValidatePassword(serviceProvider, password);
             if (passwordValid == false)
             {
@@ -132,23 +128,21 @@ namespace TheCoderForge.Identity
                 // user does not exist, so create it
                 var passwordHasher = new PasswordHasher<ApplicationUser>();
                 user.PasswordHash = passwordHasher.HashPassword(user, password);
-     
+
                 var userStore = new UserStore<ApplicationUser>(context);
-                 userStore.CreateAsync(user).Wait( ) ;
+                userStore.CreateAsync(user).Wait();
             }
-            
-      
-            
-            AssignUserRoles(serviceProvider, user.Email,  roles).Wait();
 
-         }
+            AssignUserRoles(serviceProvider, user.Email, roles).Wait();
 
-        public static void SetUserPassword(ApplicationDbContext context,ApplicationUser user, string password)
+        }
+
+        public static void SetUserPassword(TDbContext context, TUser user, string password)
         {
             if (!context.Users.Any(u => u.UserName == user.UserName))
             {
                 var passwordHasher = new PasswordHasher<ApplicationUser>();
-                var hashed = passwordHasher.HashPassword(user,password);
+                var hashed = passwordHasher.HashPassword(user, password);
                 user.PasswordHash = hashed;
 
                 var userStore = new UserStore<ApplicationUser>(context);
@@ -156,70 +150,32 @@ namespace TheCoderForge.Identity
 
             }
         }/// <summary>Assigns the Identity Roles to default ApplicationUsers.</summary>
-        /// <param name="serviceProvider">The service provider.</param>
-        /// <param name="userEmail">The email.</param>
-        /// <param name="roles">The roles.</param>
-        public static async Task<IdentityResult> AssignUserRoles(IServiceProvider serviceProvider,string userEmail, string[] roles)
+         /// <param name="serviceProvider">The service provider.</param>
+         /// <param name="userEmail">The email.</param>
+         /// <param name="roles">The roles.</param>
+        public static async Task<IdentityResult> AssignUserRoles(IServiceProvider serviceProvider, string userEmail, string[] roles)
         {
-            // use the Microsoft.Extension.DependencyInjection.ServiceProviderServiceExtensions.Creation
-            // extension method to resolve the scoped ApplicationDbContext from the service provider 
-           // using (var serviceScope = serviceProvider.CreateScope()) // 
-            //{
+            var userManager = serviceProvider.GetService<UserManager<TUser>>();
+            var user = await userManager.FindByEmailAsync(userEmail);
 
-                var  userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
-            
+            try
+            {
+                var rolesBeforeXXX = userManager.GetRolesAsync(user).Result;
+            }
+            catch (Exception e)
+            {
+                Debugger.Break();
 
-                var user = await userManager.FindByEmailAsync(userEmail);
+            }
 
-
-                try
-                {
-                    var rolesBeforeXXX = userManager.GetRolesAsync(user).Result;
-                }
-                catch (Exception e)
-                {
-                    Debugger.Break();
-
-                }
-
-                var rolesBefore = userManager.GetRolesAsync(user).Result;
-                var result = await userManager.AddToRolesAsync(user, roles);
+            //var rolesBefore = userManager.GetRolesAsync(user).Result;
+            var result = await userManager.AddToRolesAsync(user, roles);
 
 
-                var rolesAfter = userManager.GetRolesAsync(user).Result;
-                return result;
+            // var rolesAfter = userManager.GetRolesAsync(user).Result;
+            return result;
 
         }
 
-
-
-
-
-
-
-
-
-        ///// <summary>Assigns the Identity Roles to default ApplicationUsers.</summary>
-        ///// <param name="serviceProvider">The service provider.</param>
-        ///// <param name="email">The email.</param>
-        ///// <param name="roles">The roles.</param>
-        //protected static async Task<IdentityResult>  AssignUserRoles(IServiceProvider serviceProvider, string email, string[] roles)
-        //{
-
-
-
-
-        //    UserManager<ApplicationUser> _userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
-        //    ApplicationUser user = await _userManager.FindByEmailAsync(email);
-        //    var result = await _userManager.AddToRolesAsync(user, roles);
-
-        //    return result;
-
-
-
-
-
-
-        //}
     }
 }

@@ -15,9 +15,9 @@ namespace KillTeam.WebRazor.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<KillTeamUser> _userManager;
 
-        public ConfirmEmailModel(UserManager<ApplicationUser> userManager)
+        public ConfirmEmailModel(UserManager<KillTeamUser> userManager)
         {
             _userManager = userManager;
         }

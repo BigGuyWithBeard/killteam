@@ -1,4 +1,5 @@
-﻿@inject SignInManager<ApplicationUser> SignInManager
+﻿@using KillTeam.WebRazor
+@inject SignInManager<KillTeamUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
