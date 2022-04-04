@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.Library", "KillTea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.WebApp", "KillTeam.Webapp\KillTeam.WebApp.csproj", "{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.WebMVC", "KillTeam.WebMVC\KillTeam.WebMVC.csproj", "{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.WebRazor", "KillTeam.WebRazor\KillTeam.WebRazor.csproj", "{DB99FF14-527E-498E-8690-8A3D44F74D0F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCoderForge.Identity", "TheCoderForge.Identity\TheCoderForge.Identity.csproj", "{5637DDBC-3C34-4A2F-86BC-903C2ACE988B}"
@@ -37,10 +35,6 @@ Global
 		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA8D9B8F-2D48-4E09-95AC-8630B41366D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DB99FF14-527E-498E-8690-8A3D44F74D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB99FF14-527E-498E-8690-8A3D44F74D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB99FF14-527E-498E-8690-8A3D44F74D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
