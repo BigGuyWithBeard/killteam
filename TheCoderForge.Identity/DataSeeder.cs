@@ -37,20 +37,28 @@ namespace TheCoderForge.Identity
 
                 var user = new ApplicationUser
                 {
+                    Id=Guid.NewGuid().ToString(),
                     Email = "smith.johnpaul@gmail.com",
                     NormalizedEmail = "SMITH.JOHNPAUL@GMAIL.COM",
-                    UserName = "Lobo",
-                 NormalizedUserName = "LOBO",
-                    PhoneNumber = "+111111111111",
+                    UserName = "smith.johnpaul@gmail.com",
+                    NormalizedUserName = "SMITH.JOHNPAUL@GMAIL.COM",
+                    PhoneNumber = "",//"+111111111111",
                     EmailConfirmed = true,
-                    PhoneNumberConfirmed = true,
+                    PhoneNumberConfirmed = false,
                     SecurityStamp = Guid.NewGuid().ToString("D")
                 };
 
 
-                CreateUser(serviceProvider, context, user, roleArray ,"The2Towers");
+                CreateUser(serviceProvider, context, user, roleArray ,"P@ssw0rd");
 
                 context.SaveChanges();
+
+
+                // some paranoia code to check the password is correct:
+                // var  userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+             // var result=  userManager.CheckPasswordAsync( user, "P@ssw0rd");
+
+      
 
         }
 
@@ -78,6 +86,30 @@ namespace TheCoderForge.Identity
             }
         }
 
+
+        private static Boolean ValidatePassword(IServiceProvider serviceProvider, string password)
+        {
+
+            var  userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+
+            List<string> passwordErrors = new List<string>();
+
+   
+            foreach(var validator in userManager.PasswordValidators)
+            {
+                var result =  validator.ValidateAsync(userManager, null, password).Result ;
+
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        passwordErrors.Add(error.Description);   
+                    }
+                }
+            }
+
+            return passwordErrors.Count == 0;
+        }
         /// <summary>Creates the default ApplicationUsers</summary>
         /// <param name="serviceProvider">The service provider.</param>
         /// <param name="context">The context.</param>
@@ -86,14 +118,21 @@ namespace TheCoderForge.Identity
         /// <remarks>Must be called after the IdentityRoles have been created.</remarks>
         private static void CreateUser(IServiceProvider serviceProvider, ApplicationDbContext context, ApplicationUser user, string[] roles, string password)
         {
+            
+            var passwordValid = ValidatePassword(serviceProvider, password);
+            if (passwordValid == false)
+            {
+                Debugger.Break();
+                throw new Exception("Password does not Validate");
+            }
+
 
             if (!context.Users.Any(u => u.UserName == user.UserName))
             {
                 // user does not exist, so create it
                 var passwordHasher = new PasswordHasher<ApplicationUser>();
-                var hashed = passwordHasher.HashPassword(user, password);
-                user.PasswordHash = hashed;
-
+                user.PasswordHash = passwordHasher.HashPassword(user, password);
+     
                 var userStore = new UserStore<ApplicationUser>(context);
                  userStore.CreateAsync(user).Wait( ) ;
             }

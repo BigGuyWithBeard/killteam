@@ -5,4 +5,5 @@ drop table dbo.aspnetuserclaims
 drop table dbo.aspnetroleclaims
 drop table dbo.aspnetroles
 drop table dbo.aspnetusers
+
 drop table dbo.__EFMigrationsHistory

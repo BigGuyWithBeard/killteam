@@ -36,7 +36,22 @@ namespace KillTeam.WebRazor
                     // ass the DbContext is not in the webrazor app, we must change the assembly used for migrations:
                   , b=> b.MigrationsAssembly("KillTeam.WebRazor")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options =>
+                                                         {
+                                                             options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                                                             options.User.RequireUniqueEmail = true;// default password setting for identity
+                                                             options.Password.RequiredLength = 6;// default password setting for identity
+                                                             options.Password.RequireDigit = true;// default password setting for identity
+                                                             options.Password.RequireLowercase = true;// default password setting for identity
+                                                             options.Password.RequireUppercase = true;// default password setting for identity
+                                                             options.Password.RequireNonAlphanumeric = true;// default password setting for identity
+                                                             options.Password.RequiredUniqueChars = 1;// default password setting for identity
+                                                             options.SignIn.RequireConfirmedEmail = true;// default password setting for identity
+                                                             //, options.SignIn.RequireConfirmedAccount = true;
+                                                             //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                                                             //options.Lockout.MaxFailedAccessAttempts = 5;
+                                                             //options.Lockout.AllowedForNewUsers = true;
+                                                         })
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
                  
