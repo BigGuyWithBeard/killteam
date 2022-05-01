@@ -14,7 +14,7 @@
                
             </div>
             <div class="col-sm">
-                Turn Counter
+                <h1>Turn Counter</h1>
             </div>
             <div class="col-sm">
                
@@ -39,16 +39,78 @@
                 
             </div>
         </div>
+        
+
+        
+        <div class="row">
+            <div class="col-sm"><h2>Player 1</h2>
+            </div>
+            <div class="col-sm">
+
+            </div>
+            <div class="col-sm">
+                <h2>Player 2</h2>
+            </div>
+        </div>
+        
+
+        <div class="row">
+            <div class="col-sm">
+                <div class="input-group mb-3 input-group-lg">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('p1CommandPoints').stepUp();">+</button>
+                    </div>
+                    <input id="p1CommandPoints" type="number" min="1" max="4" value="1"  style="text-align:center;" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('p1CommandPoints').stepDown();">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                Command Points
+            </div>
+            <div class="col-sm">
+                <div class="input-group mb-3 input-group-lg">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('p2CommandPoints').stepUp();">+</button>
+                    </div>
+                    <input id="p2CommandPoints" type="number" min="1" max="4" value="1"  style="text-align:center;" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('p2CommandPoints').stepDown();">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-sm">
+                <div class="input-group mb-3 input-group-lg">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('p1VictoryPoints').stepUp();">+</button>
+                    </div>
+                    <input id="p1VictoryPoints" type="number" min="1" max="4" value="1"  style="text-align:center;" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('p1VictoryPoints').stepDown();">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                Victory Points
+            </div>
+            <div class="col-sm">
+                <div class="input-group mb-3 input-group-lg">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('p2VictoryPoints').stepUp();">+</button>
+                    </div>
+                    <input id="p2VictoryPoints" type="number" min="1" max="4" value="1"  style="text-align:center;" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('p2VictoryPoints').stepDown();">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    
-    
-
-
-
-    
-    <p>Command Points</p>
-    <p>Player 1</p><p>Player 2</p>
-    <p>Victory Points</p>
-    <p>Player 1</p><p>Player 2</p>
 
 </div>

@@ -11,7 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCoderForge.Identity", "T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7FC151A8-BFEA-4A5C-AEB6-6D814D97E521}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\main_killteam.yml = .github\workflows\main_killteam.yml
 		remove-identity-data.sql = remove-identity-data.sql
 		remove-identity-tables.sql = remove-identity-tables.sql
 	EndProjectSection
