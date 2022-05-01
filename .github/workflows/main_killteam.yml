@@ -55,3 +55,13 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F1D9D511B99045D1BD382E18BE03674B }}
           package: .
+
+
+
+  selenium:  
+   needs: deploy 
+   name: Selenium Tests   
+   runs-on: windows-latest
+   steps:
+   - uses: actions/checkout@v2.1.0
+   - run: dotnet test SeleniumTests --no-restore --verbosity normal  
