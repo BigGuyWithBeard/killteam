@@ -4,14 +4,16 @@ using KillTeam.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KillTeam.Web.Data.Migrations
 {
     [DbContext(typeof(KillTeamWebContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220404224412_0003")]
+    partial class _0003
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,42 +27,18 @@ namespace KillTeam.Web.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("RaceId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Test")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RaceId");
 
                     b.ToTable("Faction");
-                });
-
-            modelBuilder.Entity("KillTeam.Web.Models.FactionGroup", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("RaceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RaceId");
-
-                    b.ToTable("FactionGroup");
                 });
 
             modelBuilder.Entity("KillTeam.Web.Models.Race", b =>
@@ -78,24 +56,6 @@ namespace KillTeam.Web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Race");
-                });
-
-            modelBuilder.Entity("KillTeam.Web.Models.Faction", b =>
-                {
-                    b.HasOne("KillTeam.Web.Models.Race", "Race")
-                        .WithMany()
-                        .HasForeignKey("RaceId");
-
-                    b.Navigation("Race");
-                });
-
-            modelBuilder.Entity("KillTeam.Web.Models.FactionGroup", b =>
-                {
-                    b.HasOne("KillTeam.Web.Models.Race", "Race")
-                        .WithMany()
-                        .HasForeignKey("RaceId");
-
-                    b.Navigation("Race");
                 });
 #pragma warning restore 612, 618
         }

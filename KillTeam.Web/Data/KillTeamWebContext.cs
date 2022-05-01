@@ -15,5 +15,9 @@ namespace KillTeam.Web.Data
         }
 
         public DbSet<KillTeam.Web.Models.Faction> Faction { get; set; }
+
+        public DbSet<KillTeam.Web.Models.Race> Race { get; set; }
+
+        public DbSet<KillTeam.Web.Models.FactionGroup> FactionGroup { get; set; }
     }
 }

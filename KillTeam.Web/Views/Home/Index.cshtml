@@ -3,6 +3,52 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <img src="~/img/killteam-logo.png" class="img-fluid" style="max-width: 300px; " alt="Kill Team" />
+    <h1>Quick Game Tracker</h1>
+
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+               
+            </div>
+            <div class="col-sm">
+                Turn Counter
+            </div>
+            <div class="col-sm">
+               
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+                <div class="input-group mb-3 input-group-lg">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('turncounter').stepUp();">+</button>
+                    </div>
+                    <input id="turncounter" type="number" min="1" max="4" value="1"  style="text-align:center;" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('turncounter').stepDown();">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+
+    
+    <p>Command Points</p>
+    <p>Player 1</p><p>Player 2</p>
+    <p>Victory Points</p>
+    <p>Player 1</p><p>Player 2</p>
+
 </div>

@@ -10,22 +10,22 @@ using KillTeam.Web.Models;
 
 namespace KillTeam.Web
 {
-    public class FactionsController : Controller
+    public class FactionGroupsController : Controller
     {
         private readonly KillTeamWebContext _context;
 
-        public FactionsController(KillTeamWebContext context)
+        public FactionGroupsController(KillTeamWebContext context)
         {
             _context = context;
         }
 
-        // GET: Factions
+        // GET: FactionGroups
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Faction.ToListAsync());
+            return View(await _context.FactionGroup.ToListAsync());
         }
 
-        // GET: Factions/Details/5
+        // GET: FactionGroups/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -33,40 +33,40 @@ namespace KillTeam.Web
                 return NotFound();
             }
 
-            var faction = await _context.Faction
+            var factionGroup = await _context.FactionGroup
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (faction == null)
+            if (factionGroup == null)
             {
                 return NotFound();
             }
 
-            return View(faction);
+            return View(factionGroup);
         }
 
-        // GET: Factions/Create
+        // GET: FactionGroups/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Factions/Create
+        // POST: FactionGroups/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Title,Test")] Faction faction)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description")] FactionGroup factionGroup)
         {
             if (ModelState.IsValid)
             {
-                faction.Id = Guid.NewGuid();
-                _context.Add(faction);
+                factionGroup.Id = Guid.NewGuid();
+                _context.Add(factionGroup);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(faction);
+            return View(factionGroup);
         }
 
-        // GET: Factions/Edit/5
+        // GET: FactionGroups/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -74,22 +74,22 @@ namespace KillTeam.Web
                 return NotFound();
             }
 
-            var faction = await _context.Faction.FindAsync(id);
-            if (faction == null)
+            var factionGroup = await _context.FactionGroup.FindAsync(id);
+            if (factionGroup == null)
             {
                 return NotFound();
             }
-            return View(faction);
+            return View(factionGroup);
         }
 
-        // POST: Factions/Edit/5
+        // POST: FactionGroups/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Title,Test")] Faction faction)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description")] FactionGroup factionGroup)
         {
-            if (id != faction.Id)
+            if (id != factionGroup.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace KillTeam.Web
             {
                 try
                 {
-                    _context.Update(faction);
+                    _context.Update(factionGroup);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FactionExists(faction.Id))
+                    if (!FactionGroupExists(factionGroup.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +114,10 @@ namespace KillTeam.Web
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(faction);
+            return View(factionGroup);
         }
 
-        // GET: Factions/Delete/5
+        // GET: FactionGroups/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -125,30 +125,30 @@ namespace KillTeam.Web
                 return NotFound();
             }
 
-            var faction = await _context.Faction
+            var factionGroup = await _context.FactionGroup
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (faction == null)
+            if (factionGroup == null)
             {
                 return NotFound();
             }
 
-            return View(faction);
+            return View(factionGroup);
         }
 
-        // POST: Factions/Delete/5
+        // POST: FactionGroups/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var faction = await _context.Faction.FindAsync(id);
-            _context.Faction.Remove(faction);
+            var factionGroup = await _context.FactionGroup.FindAsync(id);
+            _context.FactionGroup.Remove(factionGroup);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FactionExists(Guid id)
+        private bool FactionGroupExists(Guid id)
         {
-            return _context.Faction.Any(e => e.Id == id);
+            return _context.FactionGroup.Any(e => e.Id == id);
         }
     }
 }

@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.Library", "KillTeam.Library\KillTeam.Library.csproj", "{B63DCA32-2785-4FE0-8890-78F444C87C99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.WebApp", "KillTeam.Webapp\KillTeam.WebApp.csproj", "{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.WebRazor", "KillTeam.WebRazor\KillTeam.WebRazor.csproj", "{DB99FF14-527E-498E-8690-8A3D44F74D0F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheCoderForge.Identity", "TheCoderForge.Identity\TheCoderForge.Identity.csproj", "{5637DDBC-3C34-4A2F-86BC-903C2ACE988B}"
@@ -17,9 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		remove-identity-tables.sql = remove-identity-tables.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorWebAsmTest", "RazorWebAsmTest\RazorWebAsmTest.csproj", "{9D121AF0-85A1-414F-B88E-665DC8CF55F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillTeam.Web", "KillTeam.Web\KillTeam.Web.csproj", "{3396BE4C-299E-4857-A033-0F4BB6D39778}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillTeam.Web", "KillTeam.Web\KillTeam.Web.csproj", "{3396BE4C-299E-4857-A033-0F4BB6D39778}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +27,6 @@ Global
 		{B63DCA32-2785-4FE0-8890-78F444C87C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B63DCA32-2785-4FE0-8890-78F444C87C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B63DCA32-2785-4FE0-8890-78F444C87C99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFCEF8CA-950F-4551-81C0-DCE8EF5D1AEB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DB99FF14-527E-498E-8690-8A3D44F74D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB99FF14-527E-498E-8690-8A3D44F74D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB99FF14-527E-498E-8690-8A3D44F74D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,10 +35,6 @@ Global
 		{5637DDBC-3C34-4A2F-86BC-903C2ACE988B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5637DDBC-3C34-4A2F-86BC-903C2ACE988B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5637DDBC-3C34-4A2F-86BC-903C2ACE988B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D121AF0-85A1-414F-B88E-665DC8CF55F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D121AF0-85A1-414F-B88E-665DC8CF55F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D121AF0-85A1-414F-B88E-665DC8CF55F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D121AF0-85A1-414F-B88E-665DC8CF55F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3396BE4C-299E-4857-A033-0F4BB6D39778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3396BE4C-299E-4857-A033-0F4BB6D39778}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3396BE4C-299E-4857-A033-0F4BB6D39778}.Release|Any CPU.ActiveCfg = Release|Any CPU
